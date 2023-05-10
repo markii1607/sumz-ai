@@ -11,8 +11,8 @@ const Demo = () => {
   const [allArticles, setAllArticles] = useState([])
   const [getSummary, { error, isFetching }] = useLazyGetSummaryQuery()
 
-  // fetch from local storage
   useEffect(() => {
+    // fetch from local storage
     const articlesFromLocalStorage = JSON.parse(localStorage.getItem('articles'))
 
     if (articlesFromLocalStorage) {
@@ -37,6 +37,9 @@ const Demo = () => {
 
       setArticle(newArticle)
       setAllArticles(updatedAllArticles)
+
+      // set local storage for all articles
+      localStorage.setItem('articles', JSON.stringify(updatedAllArticles))
     }
   }
 
